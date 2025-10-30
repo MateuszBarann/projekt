@@ -1,0 +1,105 @@
+body{
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #ddd; 
+}
+header{
+  text-align: center;
+  padding: 1rem 1rem;
+  background-color: #000;
+  color: #ffe81f;
+}
+img{
+  width: 100%;
+  
+
+}
+li{
+  color: white;
+  margin-top: 2rem;
+}
+ul{
+  text-align: left;
+  list-style-type: none;
+}
+.blok{
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.blokP{
+  margin-left: 30%;
+  margin-right: 30%;
+}
+section{
+  text-align: right;
+}
+#opis{
+  float: left;
+  text-align: center;
+  padding: 1rem 1rem;
+  background-color: #000;
+  color: #ffe81f;
+  width: 60%;
+  margin-left: 15%;
+}
+#text{
+  margin: auto;
+  font-size: 2rem;
+}
+h1{
+  font-size: 3rem;
+}
+p{
+  font-size: 2rem;
+}
+#Map{
+  float: left;
+  text-align: center;
+  margin-left: 25%;
+  background-color: #000;
+  color: #ffe81f;
+  width: 50%;
+}
+#next{
+  margin: auto;
+  width: 40%;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+nav{
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+}
+.tab{
+  padding: 0.5rem;
+  margin: 1rem;
+  border: solid 1px #ffe81f;
+  background-color: #ffe81f;
+  color: #121212;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 16px;
+  text-decoration: none;
+}
+main{
+  text-align: center;
+  padding: 2rem;
+  background-color: #000;
+}
+footer{
+  text-align: center;
+  padding: 1rem;
+  background-color: #000;
+  color: #ffe81f;
+}
+button{
+  flex: auto;
+}
+a{
+  text-decoration: none;
+}
