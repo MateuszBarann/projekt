@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 import "../styles.css";
 
 const MoviesPage = () => {
