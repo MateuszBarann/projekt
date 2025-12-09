@@ -1,36 +1,43 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
-app.use(cors());
+const PORT = 3001; 
+
+
+app.use(cors()); 
 app.use(express.json());
 
-// ======== POŁĄCZENIE Z MONGODB =========
-// !!! TU WSTAWISZ SWOJE CONNECTION STRING !!!
-mongoose.connect(
-  "mongodb://localhost:27017/starwars",
-  { useNewUrlParser: true, useUnifiedTopology: true }
-)
-.then(() => console.log("MongoDB connected"))
-.catch(err => console.error("MongoDB connection error:", err));
+mongoose.connect('mongodb://127.0.0.1:27017/StarWarsDB')
+  .then(() => console.log('Połączono z MongoDB (baza StarWarsDB)'))
+  .catch(err => console.error('Błąd połączenia z MongoDB:', err));
 
-// ======== SCHEMAT I MODEL FILMÓW =========
 const movieSchema = new mongoose.Schema({
+  episode: Number,
   title: String,
-  episode_id: Number,
-  release_date: String,
-  director: String
+  director: String,
+  release_year: Number,
+  poster: String
+}, { 
+  collection: 'StarWarsDB' 
 });
 
-const Movie = mongoose.model("Movie", movieSchema);
+const Movie = mongoose.model('Movie', movieSchema);
 
-// ======== ROUTE: ZWRÓĆ WSZYSTKIE FILMY =========
-app.get("/api/movies", async (req, res) => {
-  const movies = await Movie.find().sort({ episode_id: 1 });
-  res.json(movies);
+
+app.get('/movies', async (req, res) => {
+  try {
+    const movies = await Movie.find();
+    
+    console.log(`Znaleziono ${movies.length} filmów.`);
+    
+    res.json(movies);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
-// ======== URUCHOMIENIE SERVERA =========
-const PORT = 3001;
-app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Serwer działa na http://localhost:${PORT}`);
+});

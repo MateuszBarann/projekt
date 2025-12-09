@@ -9,26 +9,25 @@ const MoviesPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // pobieranie danych z API SWAPI
     const fetchMovies = async () => {
-      try {
-        const response = await fetch("https://swapi.dev/api/films");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+  try {
+    const response = await fetch("http://localhost:3001/movies");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-        const data = await response.json();
-        
-        const sortedMovies = data.results.sort((a, b) => a.episode_id - b.episode_id);
-        setMovies(sortedMovies);
-      } catch (err) {
-        console.error("Fetch error:", err);
-        setError("Failed to load movies.");
-      }
-    };
+    const data = await response.json();
+    console.log("Fetched movies:", data); 
+
+    setMovies(data);
+  } catch (err) {
+    console.error("Fetch error:", err);
+    setError("Failed to load movies.");
+  }
+};
 
     fetchMovies();
-    window.scrollTo(0, 0); // odpowiednik Twojej funkcji Scroll()
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -42,10 +41,10 @@ const MoviesPage = () => {
 
           <ol id="list">
             {movies.map((film) => (
-              <li key={film.episode_id}>
-                <h3>Star Wars: {film.title}</h3>
+              <li key={film._id}>
+                <h3>{film.title}</h3>
                 <ul>
-                  <li>Year: {film.release_date}</li>
+                  <li>Year: {film.release_year}</li>
                   <li>Director: {film.director}</li>
                 </ul>
               </li>
